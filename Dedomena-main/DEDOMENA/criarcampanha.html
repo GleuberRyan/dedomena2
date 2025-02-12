@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="criarconta.css">
+  <title>Criar Campanha</title>
+  <header>
+    <a href="home.html"><h1>DEDOMÉNA</h1></a>
+    <div class="itens_esquerda"><a href="login.html"><h3> Login </h3></a>
+        <a href="criarconta.html"><h3> Criar conta </h3></a>
+        <a href="perfilmestre.html"><h3> Perfil </h3></a>
+      </div>
+  </header>
+</head>
+<body>
+    <br>
+    
+    <form id="campaignForm">
+        <label>
+            Nome da campanha:
+            <input type="text" id="campaignName" required />
+        </label>
+        <br>
+        <label>
+            Descrição:
+            <textarea id="campaignDescription" required></textarea>
+        </label>
+        <br>
+        <label>
+            Data de início:
+            <input type="date" id="campaignStartDate" required />
+        </label>
+        <br>
+        <button type="submit">Criar/Atualizar Campanha</button>
+    </form>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const user = JSON.parse(localStorage.getItem("loggedUser"));
+            if (!user || user.type !== "mestre") {
+                window.location.href = "login.html";
+                return;
+            }
+
+            const campaignIndex = localStorage.getItem("editingCampaignIndex");
+
+            if (campaignIndex !== null) {
+                const campaigns = JSON.parse(localStorage.getItem("campaigns")) || [];
+                const campaign = campaigns[campaignIndex];
+                if (campaign) {
+                    document.getElementById("campaignName").value = campaign.name;
+                    document.getElementById("campaignDescription").value = campaign.description;
+                    document.getElementById("campaignStartDate").value = campaign.startDate;
+                }
+            }
+
+           
+            const saveCampaign = (event) => {
+                event.preventDefault();
+
+                const name = document.getElementById("campaignName").value;
+                const description = document.getElementById("campaignDescription").value;
+                const startDate = document.getElementById("campaignStartDate").value;
+
+                const newCampaign = { name, description, startDate };
+                const campaigns = JSON.parse(localStorage.getItem("campaigns")) || [];
+
+                if (campaignIndex !== null) {
+                    campaigns[campaignIndex] = newCampaign;
+                } else {
+                    campaigns.push(newCampaign); 
+                }
+
+                localStorage.setItem("campaigns", JSON.stringify(campaigns));
+                localStorage.removeItem("editingCampaignIndex"); 
+                window.location.href = "perfilmestre.html"; 
+            };
+
+            
+            document.getElementById("campaignForm").addEventListener("submit", saveCampaign);
+        });
+    </script>
+</body>
+</html>

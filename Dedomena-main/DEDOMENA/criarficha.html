@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar ficha</title>
+    <link rel="stylesheet" href="criarficha.css">
+    <header>
+        <a href="home.html"><h1>DEDÓMENA</h1></a>
+        <div class="itens_esquerda"><a href="login.html"><h3> Login </h3></a>
+            <a href="criarconta.html"><h3> Criar conta </h3></a>
+            <a href="perfil.html"><h3> Perfil </h3></a>
+          </div>
+    </header>
+     
+</head>
+<body>
+    <br>
+    <form id="characterForm">
+        <input type="hidden" id="characterId">
+        <input type="text" id="characterName" placeholder="Nome do personagem" required><br>
+        <input type="text" id="characterClass" placeholder="Classe" required><br>
+        <input type="number" id="characterNex" placeholder="Nex" required><br>
+        <input type="number" id="characterLevel" placeholder="Nível" required><br>
+        <textarea id="characterAbilities" placeholder="Habilidades/Descrições" required></textarea><br>
+        <br>
+        <h2>Atributos</h2>
+        <input type="number" id="characterAgilidade" placeholder="Agilidade" required><br>
+        <input type="number" id="characterForça" placeholder="Força" required><br>
+        <input type="number" id="characterIntelecto" placeholder="Intelecto" required><br>
+        <input type="number" id="characterPresença" placeholder="Presença" required><br>
+        <input type="number" id="characterVigor" placeholder="Vigor" required><br>
+
+        <button type="submit">Salvar Ficha</button>
+    </form>
+
+   
+
+
+<script src="criarficha.js"></script>
+
+</body>
+</html>

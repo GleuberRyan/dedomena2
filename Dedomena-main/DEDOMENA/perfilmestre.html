@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Perfil Mestre</title>
+    <link rel="stylesheet" href="perfilmestre.css">
+</head>
+<body>
+    <h1>Bem-vindo, Mestre <span id="userName"></span>!</h1>
+    <button id="logoutBtn">Sair</button>
+    <button id="editProfileBtn">Alterar Informações</button>
+    <button id="deleteProfileBtn">Excluir Perfil</button>
+
+    <div class="campanhacontainer">
+    <h2>Gerenciar Campanhas</h2>
+    <button onclick="window.location.href='criarcampanha.html'">Criar Nova Campanha</button>
+    </div>
+    <br>
+    <div class="campanhacontainer">
+    <h2>Campanhas Criadas</h2>
+    <ul id="campaignList"></ul>
+    </div>
+    <script src="perfilmestre.js"></script>
+<br>
+<h2>Rolagem de dados</h2>
+<div class="dadoscontainer">
+    <label for="diceType">Escolha o dado:</label>
+    <select id="diceType">
+        <option value="4">D4</option>
+        <option value="6">D6</option>
+        <option value="8">D8</option>
+        <option value="10">D10</option>
+        <option value="12">D12</option>
+        <option value="20">D20</option>
+    </select>
+
+    <br><br>
+
+    <label for="diceQuantity">Quantidade de dados:</label>
+    <input type="number" id="diceQuantity" value="1" min="1">
+
+    <br><br>
+    <button onclick="rolardado()">Rolar Dados</button>
+
+    <div id="result"></div>
+</div>
+
+<script>
+function rolardado() {
+    const diceType = parseInt(document.getElementById("diceType").value);
+    const diceQuantity = parseInt(document.getElementById("diceQuantity").value);
+    const resultDiv = document.getElementById("result");
+
+    if (!resultDiv) {
+        console.error("Elemento 'result' não encontrado.");
+        return;
+    }
+
+    if (isNaN(diceType) || isNaN(diceQuantity) || diceQuantity <= 0) {
+        resultDiv.innerHTML = "<p style='color: red;'>Escolha valores válidos!</p>";
+        return;
+    }
+
+    let results = [];
+    let total = 0;
+
+    for (let i = 0; i < diceQuantity; i++) {
+        let roll = Math.floor(Math.random() * diceType) + 1;
+        results.push(roll);
+        total += roll;
+    }
+
+    resultDiv.innerHTML = `
+        <h2>Resultados: ${results.join(", ")}</h2>
+        <h2><strong>Soma total:</strong> ${total}</h2>
+    `;
+}
+</script>
+
+</body>
+</html>

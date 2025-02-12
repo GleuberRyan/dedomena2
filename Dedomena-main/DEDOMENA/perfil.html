@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil</title>
+    <link rel="stylesheet" href="perfil.css">
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.min.js"></script>
+</head>
+<body>
+
+<header>
+    <a href="home.html"><h1>DEDOMÉNA</h1></a>
+    <div class="itens_esquerda">
+        <a href="login.html"><h3> Login </h3></a>
+        <a href="criarconta.html"><h3> Criar conta </h3></a>
+        <a href="perfil.html"><h3> Perfil </h3></a>
+    </div>
+</header>
+
+<div class="perfil">
+    <h1>Área de Perfil</h1>
+    <p>Bem-vindo ao seu perfil, <span id="userName"></span>!</p><br>
+    <button id="logoutBtn">Sair</button><br>
+    <button id="editProfileBtn">Alterar Informações</button><br>
+    <button id="deleteProfileBtn">Excluir Perfil</button><br>
+</div>
+
+
+<h2>Lista de Fichas</h2>
+<div class="fichacontainer">
+    <ul id="characterList"></ul>
+    <button onclick="window.location.href='criarficha.html'">Adicionar mais fichas</button>
+</div>
+
+<script id="character-template" type="text/x-handlebars-template">
+    {{#each characters}}
+        <li>
+            <strong>{{name}}</strong><br>
+            Classe: {{class}}<br>
+            Nex: {{nex}}<br>
+            Nível: {{level}}<br>
+            Habilidades: {{abilities}}<br>
+            <br><strong>Atributos:</strong><br>
+            Agilidade: {{agility}}<br>
+            Força: {{strength}}<br>
+            Intelecto: {{intelligence}}<br>
+            Presença: {{presence}}<br>
+            Vigor: {{vigor}}<br>
+            <button onclick="editCharacter({{id}})">Editar</button>
+            <button onclick="deleteCharacter({{id}})">Excluir</button>
+        </li>
+    {{/each}}
+</script>
+
+<h2>Rolagem de dados</h2>
+<div class="dadoscontainer">
+    <label for="diceType">Escolha o dado:</label>
+    <select id="diceType">
+        <option value="4">D4</option>
+        <option value="6">D6</option>
+        <option value="8">D8</option>
+        <option value="10">D10</option>
+        <option value="12">D12</option>
+        <option value="20">D20</option>
+    </select>
+
+    <br><br>
+
+    <label for="diceQuantity">Quantidade de dados:</label>
+    <input type="number" id="diceQuantity" value="1" min="1">
+
+    <br><br>
+    <button onclick="rolardado()">Rolar Dados</button>
+
+    <div id="result"></div>
+</div>
+
+
+<script src="perfil.js"></script>
+
+</body>
+</html>

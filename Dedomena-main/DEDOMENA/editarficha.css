@@ -1,0 +1,117 @@
+body {
+    background-color: #110326;
+    
+}
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #4d0954;
+}
+
+label{
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+    padding: 10px;
+    
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10vh; /* 100% da altura da tela */
+}
+
+.center-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+h1{
+    color: white;
+}
+
+h3{
+    color: white;
+    font-size: 13px;
+}
+
+h2{
+    color: #4d0954;
+    text-align: center;
+}
+
+table{
+    color: white;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+form label {
+    margin-top: 10px;
+}
+
+form input {
+    padding: 8px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+form button {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #110326;
+    color: white;
+    border: none;
+    cursor: pointer;
+    
+}
+
+form button:hover {
+    background-color: #110326;
+}
+
+.itens_esquerda{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.itens_direita{
+    margin-left: auto; 
+}
+
+.perfil{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+p{
+    color: white;
+}
+
+.fichacontainer{
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}

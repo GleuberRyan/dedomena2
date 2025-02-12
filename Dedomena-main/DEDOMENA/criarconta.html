@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="criarconta.css">
+  <title>Criar Perfil</title>
+  <header>
+    <a href="home.html"><h1>DEDOMÉNA</h1></a>
+    <div class="itens_esquerda"><a href="login.html"><h3> Login </h3></a>
+        <a href="criarconta.html"><h3> Criar conta </h3></a>
+        <a href="perfil.html"><h3> Perfil </h3></a>
+      </div>
+</header>
+ 
+</head>
+<body>
+    <br>
+    <form id="userForm">
+      <h2>Crie sua conta</h2>
+      <input type="hidden" id="userId" />
+      
+      <label>
+          <input placeholder="Digite seu nome de usuário:" type="text" id="userName" required />
+      </label>
+      <br>
+      
+      <label>
+          <input placeholder="Digite seu Email:" type="email" id="userEmail" required />
+      </label>
+      <br>
+      
+      <label>
+          <input placeholder="Digite sua senha:" type="password" id="userSenha" required />
+      </label>
+      <br>
+  
+      <label>
+          <select id="userType">
+              <option value="jogador">Jogador</option>
+              <option value="mestre">Mestre</option>
+          </select>
+      </label>
+      <br>
+  
+      <div class="container">
+          <button class="center-button" type="submit"><h3>Criar conta</h3></button>
+      </div>
+  </form>
+  
+  <script src="criarconta.js"></script>
+  
+
+</body>
+</html>

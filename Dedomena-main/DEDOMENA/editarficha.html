@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Ficha</title>
+    <link rel="stylesheet" href="perfil.css">
+    <header>
+        <a href="home.html"><h1>DEDOMÉNA</h1></a>
+        <div class="itens_esquerda"><a href="login.html"><h3> Login </h3></a>
+            <a href="criarconta.html"><h3> Criar conta </h3></a>
+            <a href="perfil.html"><h3> Perfil </h3></a>
+          </div>
+    </header>
+</head>
+<body>
+    <h1>Editar Ficha</h1>
+
+    <form id="editCharacterForm">
+        <input type="hidden" id="characterId">
+        <input type="text" id="characterName" placeholder="Nome do personagem" required><br>
+        <input type="text" id="characterClass" placeholder="Classe" required><br>
+        <input type="number" id="characterNex" placeholder="Nex" required><br>
+        <input type="number" id="characterLevel" placeholder="Nível" required><br>
+        <textarea id="characterAbilities" placeholder="Habilidades/Descrições" required></textarea><br>
+        
+        <h2>Atributos</h2>
+        <input type="number" id="characterAgilidade" placeholder="Agilidade" required><br>
+        <input type="number" id="characterForça" placeholder="Força" required><br>
+        <input type="number" id="characterIntelecto" placeholder="Intelecto" required><br>
+        <input type="number" id="characterPresença" placeholder="Presença" required><br>
+        <input type="number" id="characterVigor" placeholder="Vigor" required><br>
+
+        <button type="submit">Salvar Alterações</button>
+    </form>
+
+    <button onclick="window.location.href='fichas.html'">Cancelar</button>
+
+    <script>
+const urlParams = new URLSearchParams(window.location.search);
+const characterId = urlParams.get("id");
+
+let characters = JSON.parse(localStorage.getItem("characters")) || [];
+let character = characters.find(c => c.id == characterId);
+
+if (!character) {
+    alert("Personagem não encontrado!");
+    window.location.href = "fichas.html"; 
+}
+
+document.getElementById("characterName").value = character.name;
+document.getElementById("characterClass").value = character.class;
+document.getElementById("characterNex").value = character.nex;
+document.getElementById("characterLevel").value = character.level;
+document.getElementById("characterAbilities").value = character.abilities;
+document.getElementById("characterAgilidade").value = character.agility;
+document.getElementById("characterForça").value = character.strength;
+document.getElementById("characterIntelecto").value = character.intelligence;
+document.getElementById("characterPresença").value = character.presence;
+document.getElementById("characterVigor").value = character.vigor;
+
+
+document.getElementById("editCharacterForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    if (!character) return;
+
+ 
+    character.name = document.getElementById("characterName").value;
+    character.class = document.getElementById("characterClass").value;
+    character.nex = document.getElementById("characterNex").value;
+    character.level = document.getElementById("characterLevel").value;
+    character.abilities = document.getElementById("characterAbilities").value;
+    character.agility = document.getElementById("characterAgilidade").value;
+    character.strength = document.getElementById("characterForça").value;
+    character.intelligence = document.getElementById("characterIntelecto").value;
+    character.presence = document.getElementById("characterPresença").value;
+    character.vigor = document.getElementById("characterVigor").value;
+
+    localStorage.setItem("characters", JSON.stringify(characters));
+
+   
+    window.location.href = "fichas.html";
+});
+
+        
+    </script>
+    
+</body>
+</html>

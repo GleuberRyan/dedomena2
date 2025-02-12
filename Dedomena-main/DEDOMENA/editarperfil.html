@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Perfil</title>
+    <link rel="stylesheet" href="editarperfil.css">
+    <header>
+        <a href="home.html"><h1>DEDOMÉNA</h1></a>
+        <div class="itens_esquerda">
+            <a href="login.html"><h3> Login </h3></a>
+            <a href="criarconta.html"><h3> Criar conta </h3></a>
+            <a href="#" id="profileBtn"><h3>Perfil</h3></a>
+        </div>
+      </header>
+</head>
+<body>
+    <h1>Editar Perfil</h1>
+    <form id="editProfileForm">
+        <label for="editName">Nome:</label>
+        <input type="text" id="editName" required>
+        <br>
+        <label for="editEmail">Email:</label>
+        <input type="email" id="editEmail" required>
+        <br>
+        <button type="submit">Salvar Alterações</button>
+    </form>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const users = JSON.parse(localStorage.getItem("users")) || [];
+            const loggedUserEmail = localStorage.getItem("loggedUser");
+
+            const user = users.find(u => u.email === loggedUserEmail);
+            if (user) {
+                document.getElementById("editName").value = user.name;
+                document.getElementById("editEmail").value = user.email;
+            }
+
+            document.getElementById("editProfileForm").addEventListener("submit", function(event) {
+                event.preventDefault();
+
+                const updatedName = document.getElementById("editName").value;
+                const updatedEmail = document.getElementById("editEmail").value;
+
+              
+                user.name = updatedName;
+                user.email = updatedEmail;
+
+                
+                const updatedUsers = users.map(u => u.email === loggedUserEmail ? user : u);
+                localStorage.setItem("users", JSON.stringify(updatedUsers));
+
+                
+                window.location.href = "perfil.html";
+            });
+        });
+    </script>
+</body>
+</html>
